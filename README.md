@@ -1,29 +1,29 @@
 bigdiff-code
 ============
 
-## Sub modules and functionalities.
+# Sub modules and functionalities.
 This module will give you 4 submodule for accessing repositories. (TBD)
 
-### github
+## github
 Access github server based on [octonode](https://github.com/pksunkara/octonode)
 * query
 * getCommit
 * getIssue
 
-### queryResult
+## queryResult
 View, filter, and export queryResult
 * viewSummary
 * filterBy
 * export
 
-### git
+## git
 Wrap git functionalities
 * clone
 * log
 * show
 * diff
 
-### searcher
+## searcher
 Search things on github(remote) or git(local) by key
 * searchCommitsByKeyword
 * searchIssueByKeyword

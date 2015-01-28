@@ -33,7 +33,10 @@ Search things on github(remote) or git(local) by key
 
 ## Style guide
 You will want to understand and follow the style guides listed below.
-* Node: [node-style-guide](https://github.com/felixge/node-style-guide)
+* [npm](https://docs.npmjs.com/misc/coding-style)
+
+Otherwise, we will follow the style guides listed below.
+* [node-style-guide](https://github.com/felixge/node-style-guide)
 * Javascript: [Google JavaScript Style Guide](https://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml)
 
 ## Testing

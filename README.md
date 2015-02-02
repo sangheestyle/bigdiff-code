@@ -1,36 +1,43 @@
-bigdiff-code
-============
+# bigdiff-code
 check
 
-# Submodules and functionalities.
+## Submodules and functionalities.
 The bigdiff-code module will give you 4 submodules for accessing repositories. (TBD)
 
-## github
+### github
 Access github server based on [octonode](https://github.com/pksunkara/octonode)
 * query
 * getCommits
 * getIssues
 
-## queryResult
+### queryResult
 View, filter, and export queryResult
 * viewSummary
 * filterBy
 * export
 
-## git
+### git
 Wrap git functionalities
 * clone
 * log
 * show
 * diff
 
-## searcher
+### searcher
 Search things on github(remote) or git(local) by key
 * searchCommitsByKeyword
 * searchIssuesByKeyword
 * searchSourceDiff
 
-# Development environment
+## Testing
+We use [mocha](http://mochajs.org/) and [Should.js](http://shouldjs.github.io/) in order to be assured that our implementation
+of functions properly.
+
+To run the tests for bigdiff-code simply run:
+
+```shell
+$ make test
+```
 
 ## Style guide
 You will want to understand and follow the style guides listed below.
@@ -39,7 +46,3 @@ You will want to understand and follow the style guides listed below.
 Otherwise, we will follow the style guides listed below.
 * [node-style-guide](https://github.com/felixge/node-style-guide)
 * Javascript: [Google JavaScript Style Guide](https://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml)
-
-## Testing
-We will want to create tests in order to be assured that our implementation functions properly.
-* [mocha](http://mochajs.org/)

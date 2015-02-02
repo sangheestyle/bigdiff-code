@@ -56,3 +56,11 @@ You will want to understand and follow the style guides listed below.
 Otherwise, we will follow the style guides listed below.
 * [node-style-guide](https://github.com/felixge/node-style-guide)
 * Javascript: [Google JavaScript Style Guide](https://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml)
+
+Also, if you commit contains just minor changes such as fixing typo or following style guide, the commit message needs to have `CLN:` prefix.
+
+```shell
+CLN: describe about typo or style guide
+
+Bla Bla Bla~
+```

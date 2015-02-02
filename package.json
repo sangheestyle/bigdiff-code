@@ -1,0 +1,27 @@
+{
+  "name": "bigdiff-code",
+  "version": "0.0.1",
+  "description": "A small library providing utility methods to access and get data from  github and git",
+  "main": "lib/index.js",
+  "directories": {
+    "example": "examples",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sangheestyle/bigdiff-code.git"
+  },
+  "author": "Brennan, Sanghee",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sangheestyle/bigdiff-code/issues"
+  },
+  "homepage": "https://github.com/sangheestyle/bigdiff-code",
+  "devDependencies": {
+    "mocha": "^2.1.0",
+    "should": "^4.6.2"
+  }
+}

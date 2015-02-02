@@ -1,7 +1,17 @@
 # bigdiff-code
 check
 
-## Submodules and functionalities.
+## Setup
+To setup the environment, run:
+```shell
+$ git clone https://github.com/sangheestyle/bigdiff-code
+$ cd bigdiff-code
+$ nvm install
+$ make test
+```
+That's it!
+
+## Submodules and functionalities
 The bigdiff-code module will give you 4 submodules for accessing repositories. (TBD)
 
 ### github

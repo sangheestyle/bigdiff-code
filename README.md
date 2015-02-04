@@ -1,5 +1,5 @@
 # bigdiff-code
-check
+You can find what we need to do in [wiki](https://github.com/sangheestyle/bigdiff-code/wiki).
 
 ## Setup
 To setup the environment, run:

@@ -1,10 +1,15 @@
 var express = require('express');
 
 // Constants
-var PORT = 8080;
+var PORT = 80;
 
 // App
 var app = express();
+app.get('/', function (req, res) {
+  res.json({message: "Hey! You are very welcome."
+  });
+});
+
 app.get('/who_am_i', function (req, res) {
   res.json({name: "Sanghee Kim"
 	  ,collaborator: ["Brennan", "Mazin Hakeem"]

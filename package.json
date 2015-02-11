@@ -25,6 +25,7 @@
     "should": "^4.6.2"
   },
   "dependencies": {
+    "body-parser": "^1.11.0",
     "express": "^4.11.2"
   }
 }

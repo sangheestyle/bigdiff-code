@@ -49,6 +49,13 @@ To run the tests for bigdiff-code simply run:
 $ make test
 ```
 
+Also, we can use web server for testing our REST API.
+
+``` shell
+$ $ curl http://104.154.74.93:8080/who_am_i
+{"name":"Sanghee Kim","collaborator":["Brennan","Mazin Hakeem"],"favorites":["coffee"],"int_num":5,"float_num":5.12}
+```
+
 ## Style guide
 You will want to understand and follow the style guides listed below.
 * [npm](https://docs.npmjs.com/misc/coding-style)

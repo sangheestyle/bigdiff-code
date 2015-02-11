@@ -56,6 +56,20 @@ $ curl http://www.sangheestyle.com/who_am_i
 {"name":"Sanghee Kim","collaborator":["Brennan","Mazin Hakeem"],"favorites":["coffee"],"int_num":5,"float_num":5.12}
 ```
 
+or
+
+``` shell
+$ curl -d '{"regex":"SetTag"}' -H "Content-Type: application/json" http://sangheestyle.com/search/git
+{"regex":"SetTag",
+ "repos":[{"name":"repo1",
+           "commits":[{"sha":"1a2e3","patch":"bla~"},
+                      {"sha":"2klj3","patch":"blam~"}]},
+          {"name":"repo2",
+           "commits":[{"sha":"4a2e3","patch":"bla~"},
+                      {"sha":"7klj3","patch":"blam~"}]}]
+}
+```
+
 ## Style guide
 You will want to understand and follow the style guides listed below.
 * [npm](https://docs.npmjs.com/misc/coding-style)

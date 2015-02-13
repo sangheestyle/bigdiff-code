@@ -1,6 +1,8 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 
+var git = require('./lib/git');
+
 // Constants
 var PORT = 80;
 
@@ -29,14 +31,7 @@ app.get('/who_am_i', function (req, res) {
 //   http://localhost/search/git
 app.post('/search/git', function (req, res) {
   regex = req.body["regex"];
-  res.json({regex: regex
-           ,repos: [{name: "repo1"
-                    ,commits: [{sha:"1a2e3", patch: "bla~"}
-                              ,{sha:"2klj3", patch: "blam~"}]}
-                   ,{name: "repo2"
-                    ,commits: [{sha:"4a2e3", patch: "bla~"}
-                              ,{sha:"7klj3", patch: "blam~"}]}]
-  });
+  res.json(git.log('shell'))
 });
 
 app.listen(PORT);

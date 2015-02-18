@@ -12,32 +12,35 @@ $ make test
 That's it!
 
 ## Submodules and functionalities
-The bigdiff-code module will give you 4 submodules for accessing repositories. (TBD)
-
-### github
-Access github server based on [octonode](https://github.com/pksunkara/octonode)
-* query
-* getCommits
-* getIssues
-
-### queryResult
-View, filter, and export queryResult
-* viewSummary
-* filterBy
-* export
+The bigdiff-code module will give you submodules for accessing repositories.
 
 ### git
-Wrap git functionalities
-* clone
-* log
-* show
-* diff
+Wrap git functionalities.
+- [x] `git.log`: do git log with given regular expression.
+- [ ] `git.grep`: grep commits by given regular expression and context.
+- [ ] `git.clone`: clone repositories.
+
+### github
+Find repositories or issues via various criteria. See [Search APIs](https://developer.github.com/v3/search).
+- [x] `github.searchRepos`: search repos and save result into a JSON file or DB.
+- [ ] `github.getCommits`: get commits of a repository.
+- [ ] `github.getIssues`: get issues of a repository.
+
+### queryResult
+View, filter, and export queryResult.
+- [ ] viewSummary
+- [ ] filterBy
+- [ ] export
 
 ### searcher
 Search things on github(remote) or git(local) by key
-* searchCommitsByKeyword
-* searchIssuesByKeyword
-* searchSourceDiff
+- [ ] searchCommitsByKeyword
+- [ ] searchIssuesByKeyword
+- [ ] searchSourceDiff
+
+### utils
+Some utils help other modules.
+- [x] `utils.dateRange`: generate date range between start and end date.
 
 ## Testing
 We use [mocha](http://mochajs.org/) and [Should.js](http://shouldjs.github.io/) in order to be assured that our implementation

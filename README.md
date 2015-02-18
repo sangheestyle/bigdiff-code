@@ -1,16 +1,6 @@
 # bigdiff-code
 You can find what we need to do in [wiki](https://github.com/sangheestyle/bigdiff-code/wiki).
 
-## Setup
-To setup the environment, run:
-```shell
-$ git clone https://github.com/sangheestyle/bigdiff-code
-$ cd bigdiff-code
-$ nvm install
-$ make test
-```
-That's it!
-
 ## Submodules and functionalities
 The bigdiff-code module will give you submodules for accessing repositories.
 
@@ -42,6 +32,14 @@ Search things on github(remote) or git(local) by key
 Some utils help other modules.
 - [x] `utils.dateRange`: generate date range between start and end date.
 
+## Setup
+To setup the environment, run:
+```shell
+$ git clone https://github.com/sangheestyle/bigdiff-code
+$ cd bigdiff-code
+$ nvm install
+$ make test
+```
 ## Testing
 We use [mocha](http://mochajs.org/) and [Should.js](http://shouldjs.github.io/) in order to be assured that our implementation
 of functions properly.

@@ -2,7 +2,7 @@
 You can find what we need to do in [wiki](https://github.com/sangheestyle/bigdiff-code/wiki).
 
 ## Submodules and functionalities
-The bigdiff-code module will give you submodules for accessing repositories.
+The bigdiff-code module will give you submodules for accessing repositories and social artifacts.
 
 ### git
 Wrap git functionalities.
@@ -27,6 +27,11 @@ Search things on github(remote) or git(local) by key
 - [ ] searchCommitsByKeyword
 - [ ] searchIssuesByKeyword
 - [ ] searchSourceDiff
+
+### googlePlay
+Search packages, crawl their information, and save them.
+- [ ] isExisted: check a app whether existed or not in Google Play with package ID
+- [ ] crawlInformation: crawl information of the app and save it into DB
 
 ### utils
 Some utils help other modules.

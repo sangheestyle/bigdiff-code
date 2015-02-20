@@ -8,7 +8,7 @@ The bigdiff-code module will give you submodules for accessing repositories and 
 Wrap git functionalities.
 - [x] `git.log`: do git log with given regular expression.
 - [ ] `git.grep`: grep commits by given regular expression and context.
-- [ ] `git.clone`: clone repositories.
+- [x] `git.clone`: clone single or multiple repositories.
 
 ### github
 Find repositories or issues via various criteria. See [Search APIs](https://developer.github.com/v3/search).

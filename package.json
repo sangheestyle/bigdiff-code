@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "body-parser": "^1.11.0",
+    "cassandra-driver": "^1.0.3",
     "express": "^4.11.2",
     "moment": "^2.9.0",
     "moment-range": "^1.0.6",

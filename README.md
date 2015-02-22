@@ -14,7 +14,7 @@ Wrap git functionalities.
 Find repositories or issues via various criteria. See [Search APIs](https://developer.github.com/v3/search).
 - [x] `github.searchRepos`: search repos and save result into a JSON file or DB.
 - [ ] `github.getCommits`: get commits of a repository.
-- [ ] `github.getIssues`: get issues of a repository.
+- [x] `github.getRepoIssues`: get issues of a repository and save result in DB.
 
 ### queryResult
 View, filter, and export queryResult.

@@ -1,6 +1,9 @@
 var cassandra = require('cassandra-driver');
 var git = require('../lib/git');
+var github = require('../lib/github');
 
+
+var gh_client = github.authClient(user_id, password);
 
 var params = {
   query: 'select * from bigdiff.repo_info'
@@ -29,5 +32,9 @@ client.execute(params.query, null, function(err, result) {
     }
     console.log('filtered: ' + urlNames.list.length + " items");
     git.multipleClone(urlNames);
+    for (i = 0; i < urlNames.list.length; i++) {
+      gh_params = {client: gh_client, repo: urlNames.list[i].full_name};
+      github.getRepoIssues(gh_params);
+    }
   }
 });

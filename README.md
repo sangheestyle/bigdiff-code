@@ -27,15 +27,15 @@ Wrap git functionalities.
 Find repositories or issues via various criteria. See [Search APIs](https://developer.github.com/v3/search).
 - [x] `github.authClient`: return a client with authentification.
 - [x] `github.getRepoIssues`: get issues of a repository and save result in DB.
-- [x] `github.searchRepos`: search repos and save result into a JSON file or DB.
+- [x] `github.searchRepos`: search repos and save result in DB.
 
 ### googlePlay
 Search packages, crawl their information, and save them.
-- [ ] isExisted: check a app whether existed or not in Google Play with package ID
-- [ ] crawlInformation: crawl information of the app and save it into DB
+- [ ] isExisted: check a app whether existed or not in Google Play with package ID.
+- [ ] crawlInformation: crawl information of the app and save it in DB
 
 ### db
-Search things on github or git stored in DB by key
+Search things on github or git stored in DB by key (TBD)
 - [ ] searchCommits
 - [ ] searchIssues
 - [ ] searchSourceDiff

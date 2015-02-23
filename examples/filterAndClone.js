@@ -10,20 +10,24 @@ var params = {
 var client = new cassandra.Client({contactPoints: ['127.0.0.1'],
                                   keyspace:'bigdiff'});
 var urlNames = {
-  root: '/path/to/root',
+  root: '/home/user/RA-Work/sampleRepos/',
   list: []
 };
 
 client.execute(params.query, null, function(err, result) {
   client.shutdown();
-  console.log('result: ' + result.rows.length + " items");
-  for (i = 0; i < result.rows.length; i++) {
-    var repo = result.rows[i];
-    if ((repo.forks_count > 200) && (repo.watchers_count > 200)) {
-      urlNames.list.push({clone_url:repo.clone_url
-                       ,full_name:repo.full_name});
+  if (err) {
+    console.log(err);
+  } else {
+    console.log('result: ' + result.rows.length + " items");
+    for (i = 0; i < result.rows.length; i++) {
+      var repo = result.rows[i];
+      if ((repo.forks_count > 200) && (repo.watchers_count > 200)) {
+        urlNames.list.push({clone_url:repo.clone_url
+                         ,full_name:repo.full_name});
+      }
     }
+    console.log('filtered: ' + urlNames.list.length + " items");
+    git.multipleClone(urlNames);
   }
-  console.log('filtered: ' + urlNames.list.length + " items");
-  git.multipleClone(urlNames);
 });

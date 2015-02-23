@@ -46,6 +46,10 @@ $ cd bigdiff-code
 $ nvm install
 $ make test
 ```
+
+## How to use
+You can see some [example](https://github.com/sangheestyle/bigdiff-code/tree/master/examples) to know how to use this module.
+
 ## Testing
 We use [mocha](http://mochajs.org/) and [Should.js](http://shouldjs.github.io/) in order to be assured that our implementation
 of functions properly.

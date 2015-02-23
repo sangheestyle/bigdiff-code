@@ -8,13 +8,14 @@ The bigdiff-code module will give you submodules for accessing repositories and 
 Wrap git functionalities.
 - [x] `git.log`: do git log with given regular expression.
 - [ ] `git.grep`: grep commits by given regular expression and context.
-- [x] `git.clone`: clone single or multiple repositories.
+- [x] `git.clone`: clone single repository.
+- [x] `git.multipleClone`: clone single or multiple repositories.
 
 ### github
 Find repositories or issues via various criteria. See [Search APIs](https://developer.github.com/v3/search).
-- [x] `github.searchRepos`: search repos and save result into a JSON file or DB.
-- [ ] `github.getCommits`: get commits of a repository.
+- [x] `github.authClient`: return a client with authentification.
 - [x] `github.getRepoIssues`: get issues of a repository and save result in DB.
+- [x] `github.searchRepos`: search repos and save result into a JSON file or DB.
 
 ### queryResult
 View, filter, and export queryResult.
@@ -62,11 +63,3 @@ You will want to understand and follow the style guides listed below.
 Otherwise, we will follow the style guides listed below.
 * [node-style-guide](https://github.com/felixge/node-style-guide)
 * Javascript: [Google JavaScript Style Guide](https://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml)
-
-Also, if you commit contains just minor changes such as fixing typo or following style guide, the commit message needs to have `CLN:` prefix.
-
-```shell
-CLN: describe about typo or style guide
-
-Bla Bla Bla~
-```

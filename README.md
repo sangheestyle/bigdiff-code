@@ -8,6 +8,7 @@ $ git clone https://github.com/sangheestyle/bigdiff-code
 $ cd bigdiff-code
 $ nvm install
 ```
+Also, bigdiff-code is installable via [npm](https://www.npmjs.com/package/bigdiff-code).
 
 ## How to use
 You can see some [example](https://github.com/sangheestyle/bigdiff-code/tree/master/examples) to know how to use this module.

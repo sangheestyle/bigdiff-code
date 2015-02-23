@@ -28,7 +28,8 @@ CREATE TABLE repo_info(
   forks_count int,
   open_issues_count int,
   score float,
-  PRIMARY KEY (owner_login, size)
+  cloned_path text,
+  PRIMARY KEY (full_name, size)
 );
 
 CREATE TABLE repo_issues(

@@ -29,22 +29,16 @@ Find repositories or issues via various criteria. See [Search APIs](https://deve
 - [x] `github.getRepoIssues`: get issues of a repository and save result in DB.
 - [x] `github.searchRepos`: search repos and save result into a JSON file or DB.
 
-### queryResult
-View, filter, and export queryResult.
-- [ ] viewSummary
-- [ ] filterBy
-- [ ] export
-
-### searcher
-Search things on github(remote) or git(local) by key
-- [ ] searchCommitsByKeyword
-- [ ] searchIssuesByKeyword
-- [ ] searchSourceDiff
-
 ### googlePlay
 Search packages, crawl their information, and save them.
 - [ ] isExisted: check a app whether existed or not in Google Play with package ID
 - [ ] crawlInformation: crawl information of the app and save it into DB
+
+### db
+Search things on github or git stored in DB by key
+- [ ] searchCommits
+- [ ] searchIssues
+- [ ] searchSourceDiff
 
 ### utils
 Some utils help other modules.

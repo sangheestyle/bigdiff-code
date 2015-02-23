@@ -1,6 +1,6 @@
 {
   "name": "bigdiff-code",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A small library providing utility methods to access and get data from  github and git",
   "main": "lib/index.js",
   "directories": {

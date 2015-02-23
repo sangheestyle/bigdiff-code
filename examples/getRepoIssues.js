@@ -1,4 +1,4 @@
-var github = require('../github');
+var github = require('../lib/github');
 
 var username = 'username';
 var password = 'password';

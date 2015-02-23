@@ -1,4 +1,4 @@
-var github = require('../github');
+var github = require('../lib/github');
 
 var params = {
   query: 'android in:AndroidManifest.xml language:java',

@@ -29,9 +29,27 @@ app.get('/who_am_i', function (req, res) {
 // Expected request format:
 // $ curl -d '{"regex":"settag"}' -H "Content-Type: application/json" \
 //   http://localhost/search/git
-app.post('/search/git', function (req, res) {
-  regex = req.body["regex"];
-  res.json(git.log('shell'))
+//
+
+app.get('/search/git', function (req, res) {
+  //var regex = req.body["regex"];
+  var params = { path: '.'
+               , regex: 'forEach'
+               , full_name: 'id/name'
+               , context: 1
+  };
+
+  git.log(params, function(error, results) {
+    if (error) {
+      console.log(error);
+    } else {
+      res.format({
+        'text': function() {
+          res.send(JSON.stringify(results, null, 2));
+        }
+      });
+    }
+  });
 });
 
 app.listen(PORT);

@@ -4,7 +4,7 @@ var bodyParser = require('body-parser');
 var git = require('./lib/git');
 
 // Constants
-var PORT = 80;
+var PORT = 8080;
 
 // App
 var app = express();

@@ -9,7 +9,8 @@
        author_email: 'doubledouble@nonoyesyesues.com',
        date: 'Fri Jan 16 12:35:42 2015 -0700',
        subject: 'first line of commit message',
-       body: 'body of commit message but usually empty' } ] }
+       body: 'body of commit message but usually empty'
+       chunk: 'chunk of files' } ] }
 */
 
 var git = require('../lib/git');

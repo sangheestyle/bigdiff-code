@@ -13,7 +13,7 @@ var params = {
 var client = new cassandra.Client({contactPoints: ['127.0.0.1'],
                                   keyspace:'bigdiff'});
 var urlNames = {
-  root: '/home/user/RA-Work/sampleRepos/',
+  root: '/path/to/root/',
   list: []
 };
 

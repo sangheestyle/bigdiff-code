@@ -18,8 +18,8 @@ var readdirp = require('readdirp');
 var git = require('../lib/git');
 
 
-var root = '/path/to/repoRoot';
-var regex = 'setTag';
+var root = '/home/sanghee/testClone';
+var regex = '".setTag\([^,|^\(]*,[^,]*\)"';
 var ext = 'java';
 
 readdirp({ root: root, depth: 1, entryType: 'directories'})
@@ -33,7 +33,12 @@ readdirp({ root: root, depth: 1, entryType: 'directories'})
           if (error) {
             console.log(error);
           } else {
-            console.log(results);
+            if (results.results.length !== 0) {
+              console.log("Found in " + results.full_name);
+              console.log(results);
+            } else {
+              console.log("Not Found in " + results.full_name);
+            }
           }
         });
     }

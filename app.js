@@ -29,8 +29,8 @@ app.get('/who_am_i', function (req, res) {
  *  return commit lists including given regex pattern
  */
 
-app.get('/search/git', function (req, res) {
-  var root = '/home/sanghee/testClone';
+app.get('/search/commits', function (req, res) {
+  var root = '/home/sangheestyle_gmail_com/repos';
   var regex = '".setTag\([^,|^\(]*,[^,]*\)"';
   var ext = 'java';
 

@@ -1,5 +1,6 @@
 /*
- * This example shows return
+ * This example shows return multiple commits filtered by
+ * given regex and extension.
 
 { full_name: 'id/name',
   regex: 'given_regex',
@@ -13,13 +14,27 @@
        chunk: 'chunk of files' } ] }
 */
 
+var readdirp = require('readdirp');
 var git = require('../lib/git');
 
-git.log({path: '.', regex: 'forEach', full_name: 'id/name'},
-  function(error, results) {
-    if (error) {
-      console.log(error);
-    } else {
-      console.log(results);
+
+var root = '/path/to/repoRoot';
+var regex = 'setTag';
+var ext = 'java';
+
+readdirp({ root: root, depth: 1, entryType: 'directories'})
+  .on('data', function (entry) {
+    if (entry.parentDir !== '') {
+      git.log({ path: entry.fullPath
+              , regex: regex
+              , ext: ext
+              , full_name: entry.path
+        },function (error, results) {
+          if (error) {
+            console.log(error);
+          } else {
+            console.log(results);
+          }
+        });
     }
-});
+  });

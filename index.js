@@ -1,5 +1,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var readdirp = require('readdirp');
 
 var git = require('./lib/git');
 
@@ -24,33 +25,43 @@ app.get('/who_am_i', function (req, res) {
   });
 });
 
-// return commit lists including given regex pattern
-//
-// Expected request format:
-// $ curl -d '{"regex":"settag"}' -H "Content-Type: application/json" \
-//   http://localhost/search/git
-//
+/*
+ *  return commit lists including given regex pattern
+ */
 
 app.get('/search/git', function (req, res) {
-  //var regex = req.body["regex"];
-  var params = { path: '.'
-               , regex: 'forEach'
-               , full_name: 'id/name'
-               , context: 1
-  };
+  var root = '/home/sanghee/testClone';
+  var regex = '".setTag\([^,|^\(]*,[^,]*\)"';
+  var ext = 'java';
 
-  git.log(params, function(error, results) {
-    if (error) {
-      console.log(error);
-    } else {
-      res.format({
-        'text': function() {
-          res.send(JSON.stringify(results, null, 2));
-        }
-      });
-    }
-  });
+  //TODO: I need to put res.close() somewhere but I don't know
+  readdirp({ root: root, depth: 1, entryType: 'directories'})
+    .on('data', function (entry) {
+      if (entry.parentDir !== '') {
+        git.log({ path: entry.fullPath
+                , regex: regex
+                , ext: ext
+                , full_name: entry.path
+          },function (error, results) {
+            if (error) {
+              console.log(error);
+            } else {
+              if (results.results.length !== 0) {
+                console.log("Found in " + results.full_name);
+                console.log(results);
+                res.write("Found in " + results.full_name + '\n');
+                res.write(JSON.stringify(results, null, 2));
+                res.write('\n');
+              } else {
+                console.log("Not Found in " + results.full_name);
+                res.write("Not Found in " + results.full_name + '\n');
+              }
+            }
+          });
+      }
+    });
 });
+
 
 app.listen(PORT);
 console.log('Running on http://localhost:' + PORT);

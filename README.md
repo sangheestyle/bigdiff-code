@@ -34,12 +34,6 @@ Search packages, crawl their information, and save them.
 - [ ] isExisted: check a app whether existed or not in Google Play with package ID.
 - [ ] crawlInformation: crawl information of the app and save it in DB
 
-### db
-Search things on github or git stored in DB by key (TBD)
-- [ ] searchCommits
-- [ ] searchIssues
-- [ ] searchSourceDiff
-
 ### utils
 Some utils help other modules.
 - [x] `utils.dateRange`: generate date range between start and end date.

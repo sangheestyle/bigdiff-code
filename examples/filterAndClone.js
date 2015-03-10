@@ -1,40 +1,18 @@
-var cassandra = require('cassandra-driver');
+var mongo = require('../lib/mongo');
 var git = require('../lib/git');
-var github = require('../lib/github');
 
 
-var gh_client = github.authClient(user_id, password);
-
-var params = {
-  query: 'select * from bigdiff.repo_info'
-       + ' where size > 3000 and size < 100000'
-       + ' allow filtering;',
+var params = { url: "mongodb://localhost:27017/muse"
+             , collection: "repo"
+             , query: {watchers: {$gte: 5}, size: {$lte: 20480}}
+             , fields: {full_name: 1, clone_url: 1, _id: 0}
 };
-var client = new cassandra.Client({contactPoints: ['127.0.0.1'],
-                                  keyspace:'bigdiff'});
 var urlNames = {
-  root: '/path/to/root/',
+  root: '/home/sanghee/muse_git_repo/',
   list: []
 };
 
-client.execute(params.query, null, function(err, result) {
-  client.shutdown();
-  if (err) {
-    console.log(err);
-  } else {
-    console.log('result: ' + result.rows.length + " items");
-    for (i = 0; i < result.rows.length; i++) {
-      var repo = result.rows[i];
-      if ((repo.forks_count > 200) && (repo.watchers_count > 200)) {
-        urlNames.list.push({clone_url:repo.clone_url
-                         ,full_name:repo.full_name});
-      }
-    }
-    console.log('filtered: ' + urlNames.list.length + " items");
-    git.multipleClone(urlNames);
-    for (i = 0; i < urlNames.list.length; i++) {
-      gh_params = {client: gh_client, repo: urlNames.list[i].full_name};
-      github.getRepoIssues(gh_params);
-    }
-  }
+mongo.find(params, function(err, items) {
+  urlNames.list = items;
+  git.multipleClone(urlNames);
 });

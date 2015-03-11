@@ -1,7 +1,8 @@
 var github = require('../lib/github');
+var config = require('../config.json');
 
-var id = 'your_id';
-var password = 'your_password';
+var id = config.github_id;
+var password = config.github_password;
 var params = {
   query: 'android in:name,description,readme',
   start: '2011-01-01',

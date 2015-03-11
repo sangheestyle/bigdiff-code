@@ -54,7 +54,8 @@ app.get('/search/commits', function(req, res) {
  */
 
 app.post('/search/commits', function (req, res) {
-  var root = '/home/sanghee/highvol/muse_git_repo';
+  var config = require('./config.json');
+  var root = config.local_repo_root;
   // For console input, the regex string requires double qoutes
   var regex = '"' + req.body.regex + '"';
   var ext = req.body.ext;

@@ -9,7 +9,7 @@ var PORT = 8080;
 
 // App
 var app = express();
-app.use(bodyParser.json());
+app.use(bodyParser());
 
 app.get('/', function (req, res) {
   res.json({message: "Hey! You are very welcome."
@@ -26,13 +26,38 @@ app.get('/who_am_i', function (req, res) {
 });
 
 /*
+ * get regex and extension and do post with them
+ */
+
+app.get('/search/commits', function(req, res) {
+  var html = '<form action="/search/commits" method="post">' +
+               'For example: .setTag\\\\([^,|^\\\\(]*,[^,]*\\\\)' +
+               '<br>' +
+               'Use two backslashes instead of one backslash.' +
+               '<br>' +
+               'Also, it takes really long time, please bare with me.' +
+               '<br>' +
+               'regex:' +
+               '<input type="text" name="regex" placeholder=".setTag\\\\([^,|^\\\\(]*,[^,]*\\\\)" />' +
+               '<br>' +
+               '<br>' +
+               'extension:' +
+               '<input type="text" name="ext" placeholder="java" />' +
+               '<br>' +
+               '<button type="submit">Submit</button>' +
+            '</form>';
+  res.send(html);
+});
+
+/*
  *  return commit lists including given regex pattern
  */
 
-app.get('/search/commits', function (req, res) {
-  var root = '/home/sanghee/muse_git_repo';
-  var regex = '".setTag\\([^,|^\\(]*,[^,]*\\)"';
-  var ext = 'java';
+app.post('/search/commits', function (req, res) {
+  var root = '/home/sanghee/highvol/muse_git_repo';
+  // For console input, the regex string requires double qoutes
+  var regex = '"' + req.body.regex + '"';
+  var ext = req.body.ext;
 
   //TODO: I need to put res.close() somewhere but I don't know
   readdirp({ root: root, depth: 1, entryType: 'directories'})

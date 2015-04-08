@@ -6,7 +6,7 @@ To setup the environment, run:
 ```shell
 $ git clone https://github.com/sangheestyle/bigdiff-code
 $ cd bigdiff-code
-$ nvm install
+$ npm install
 ```
 Also, bigdiff-code is installable via [npm](https://www.npmjs.com/package/bigdiff-code).
 

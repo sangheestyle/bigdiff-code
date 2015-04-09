@@ -18,4 +18,13 @@ var urlNames = {
 mongo.find(params, function(err, items) {
   urlNames.list = items;
   git.multipleClone(urlNames);
+  var insertParams = { url: params.url
+                      , collection: "reposCloned"
+  };
+  insertParams.docs = urlNames.list;
+  mongo.insertDocs(insertParams, function(err){
+    if (err) {
+      console.log(err);
+    }
+  });
 });

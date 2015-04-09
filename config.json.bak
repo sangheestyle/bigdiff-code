@@ -2,5 +2,6 @@
 , "github_password": "your_github_password"
 , "local_repo_root": "/path/to/local/git/root/"
 , "mongo_url": "mongodb://localhost:27017/db"
-, "mongo_collection": "collection"
+, "mongo_collection": "collection_or_repoIssues"
+, "repo": "repoToGatherIssuesFor"
 }

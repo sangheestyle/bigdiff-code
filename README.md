@@ -31,8 +31,8 @@ Find repositories or issues via various criteria. See [Search APIs](https://deve
 
 ### googlePlay
 Search packages, crawl their information, and save them.
+- [x] getReviews: crawl reviews of app.
 - [ ] isExisted: check a app whether existed or not in Google Play with package ID.
-- [ ] crawlInformation: crawl information of the app and save it in DB
 
 ### utils
 Some utils help other modules.

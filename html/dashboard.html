@@ -16,6 +16,9 @@
     <h2>Relationship between forks and watchers</h2>
     <div id="chart_rel_forks_watchers"></div>
 
+    <h2>Relationship between watchers and size</h2>
+    <div id="chart_rel_watchers_size"></div>
+
     <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
     <script src="/c3/c3.js"></script>
     <script>
@@ -67,6 +70,34 @@
         }
     });
     </script>
+
+    <script>
+    var chart = c3.generate({
+        bindto: '#chart_rel_watchers_size',
+        data: {
+            xs: {
+                watchers: 'size',
+            },
+            url: 'rel_watchers_size.csv',
+            type: 'scatter'
+        },
+        axis: {
+            x: {
+                label: 'watchers count',
+                tick: {
+                    fit: false
+                }
+            },
+            y: {
+                label: 'repo size'
+            }
+        },
+        zoom: {
+                enabled: true
+        }
+    });
+    </script>
+
   </div>
   </body>
 </html>

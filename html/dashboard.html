@@ -13,8 +13,8 @@
     <h2>Number of created repos per day</h2>
     <div id="chart"></div>
 
-    <h2>Relationship between forks and watchers</h2>
-    <div id="chart_rel_forks_watchers"></div>
+    <h2>Relationship between watchers and forks</h2>
+    <div id="chart_rel_watchers_forks"></div>
 
     <h2>Relationship between watchers and size</h2>
     <div id="chart_rel_watchers_size"></div>
@@ -46,7 +46,7 @@
 
     <script>
     var chart = c3.generate({
-        bindto: '#chart_rel_forks_watchers',
+        bindto: '#chart_rel_watchers_forks',
         data: {
             xs: {
                 watchers: 'forks',

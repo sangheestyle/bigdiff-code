@@ -1,6 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var readdirp = require('readdirp');
+var path = require('path');
 
 var git = require('./lib/git');
 
@@ -10,6 +11,7 @@ var PORT = 8080;
 // App
 var app = express();
 app.use(bodyParser());
+app.use(express.static(path.join(__dirname, 'html')));
 
 app.get('/', function (req, res) {
   res.json({message: "Hey! You are very welcome."

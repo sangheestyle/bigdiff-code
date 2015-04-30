@@ -156,3 +156,16 @@
 .c3-chart-arc .c3-gauge-value {
   fill: #000;
   /*  font-size: 28px !important;*/ }
+
+/* Custom */
+#chart {
+  width: 855px;
+  margin:0 auto;
+  text-align: center;
+}
+
+#content {
+  width: 855px;
+  margin:0 auto;
+  text-align: left;
+}

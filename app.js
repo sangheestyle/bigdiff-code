@@ -12,6 +12,7 @@ var PORT = 8080;
 var app = express();
 app.use(bodyParser());
 app.use(express.static(path.join(__dirname, 'html')));
+var html_dir = './html/';
 
 app.get('/', function (req, res) {
   res.json({message: "Hey! You are very welcome."
@@ -25,6 +26,14 @@ app.get('/who_am_i', function (req, res) {
           ,int_num: 5
           ,float_num: 5.12
   });
+});
+
+/*
+ * show dashboard to represent current status of MUSE
+ */
+
+app.get('/dashboard', function(req, res) {
+  res.sendfile(html_dir + 'dashboard.html');
 });
 
 /*

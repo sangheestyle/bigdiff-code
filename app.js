@@ -4,6 +4,8 @@ var readdirp = require('readdirp');
 var path = require('path');
 
 var git = require('./lib/git');
+var mongo = require('./lib/mongo');
+var config = require('./config.json');
 
 // Constants
 var PORT = 8080;
@@ -42,6 +44,7 @@ app.get('/dashboard', function(req, res) {
 
 app.get('/search/commits', function(req, res) {
   var html = '<form action="/search/commits" method="post">' +
+               '<h1>Search patterns on cloned repos</h1>' +
                'For example: .setTag\\\\([^,|^\\\\(]*,[^,]*\\\\)' +
                '<br>' +
                'Use two backslashes instead of one backslash.' +
@@ -72,8 +75,16 @@ app.post('/search/commits', function (req, res) {
   var ext = req.body.ext;
 
   //TODO: I need to put res.close() somewhere but I don't know
+  var count = 0;
+  var MAX_RESULT = 5;
   readdirp({ root: root, depth: 1, entryType: 'directories'})
     .on('data', function (entry) {
+      // show only limited-number of results
+      if (count > MAX_RESULT) {
+        res.end();
+        return null;
+      }
+
       if (entry.parentDir !== '') {
         git.log({ path: entry.fullPath
                 , regex: regex
@@ -89,6 +100,7 @@ app.post('/search/commits', function (req, res) {
                 res.write("Found in " + results.full_name + '\n');
                 res.write(JSON.stringify(results, null, 2));
                 res.write('\n');
+                count += 1;
               } else {
                 console.log("Not Found in " + results.full_name);
                 res.write("Not Found in " + results.full_name + '\n');
@@ -99,6 +111,34 @@ app.post('/search/commits', function (req, res) {
     });
 });
 
+app.get('/muse/count', function (req, res) {
+  var group =
+    [
+      {
+        $group: {
+          _id: {
+            year: {$year: "$created_at"},
+            month: {$month: "$created_at"},
+            day: {$dayOfMonth: "$created_at"}},
+          count: {$sum: 1}
+        }
+      }
+    ];
+  var params = { url: config.mongo_url
+               , collection: config.mongo_collection
+               , group: group
+  };
+
+  mongo.group(params, function(err, result) {
+    var jsonResult =  []
+    result.forEach(function(entry) {
+      var date = entry._id.year + "-" + entry._id.month + "-" + entry._id.day;
+      date = new Date(Date.parse(date)).toISOString().slice(0, 10);
+      jsonResult.push({date: date, count: entry.count});
+    });
+    res.json({result: jsonResult});
+  });
+});
 
 app.listen(PORT);
 console.log('Running on http://localhost:' + PORT);

@@ -38,15 +38,6 @@ Search packages, crawl their information, and save them.
 Some utils help other modules.
 - [x] `utils.dateRange`: generate date range between start and end date.
 
-## Testing
-We use [mocha](http://mochajs.org/) and [Should.js](http://shouldjs.github.io/) in order to be assured that our implementation of functions properly.
-
-To run the tests for bigdiff-code simply run:
-
-```shell
-$ make test
-```
-
 ## Style guide
 You will want to understand and follow the style guides listed below.
 * [express](https://github.com/strongloop/express)

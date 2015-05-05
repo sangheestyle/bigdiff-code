@@ -21,31 +21,39 @@
 
     <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
     <script src="/c3/c3.js"></script>
+    <script type="text/javascript"
+            src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js">
+    </script>
     <script>
-      var chart = c3.generate({
-        bindto: '#chart',
-        data: {
-          x : 'date',
-          xFormat : '%Y%m%d',
-          url: 'per_day.csv'
-        },
-        axis : {
-          x : {
-            type : 'timeseries',
-            tick : {
-//              format : "%m/%d" // https://github.com/mbostock/d3/wiki/Time-Formatting#wiki-format
-              format : "%e %b %y" // https://github.com/mbostock/d3/wiki/Time-Formatting#wiki-format
+      (function() {
+        var museAPI = "http://sangheestyle.com:8080/muse/count";
+        $.getJSON(museAPI)
+        .done(function(data) {
+          var chart = c3.generate({
+            bindto: '#chart',
+            data: {
+              json: data.result,
+              keys: {value: ['date', 'count']},
+              x: 'date'
             },
-            label: 'number of repo created'
-            },
-            y: {
+            axis : {
+              x : {
+                type : 'timeseries',
+                tick : {
+                  format : "%Y-%m-%d"
+                },
                 label: 'date'
+                },
+                y: {
+                    label: 'number of created repo'
+                }
+            },
+            zoom: {
+                    enabled: true
             }
-        },
-        zoom: {
-                enabled: true
-        }
-      });
+          });
+        });
+      })();
     </script>
 
     <script>
@@ -69,9 +77,6 @@
                 label: 'forks count'
             }
         },
-        zoom: {
-                enabled: true
-        }
     });
     </script>
 
@@ -80,7 +85,7 @@
         bindto: '#chart_rel_watchers_size',
         data: {
             xs: {
-                watchers: 'size',
+                s: 'w',
             },
             url: 'rel_watchers_size.csv',
             type: 'scatter'
@@ -96,9 +101,6 @@
                 label: 'repo size'
             }
         },
-        zoom: {
-                enabled: true
-        }
     });
     </script>
 

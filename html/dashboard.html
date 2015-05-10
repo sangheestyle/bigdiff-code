@@ -28,7 +28,7 @@
     </script>
     <script>
       (function() {
-        var museAPI = "http://sangheestyle.com:8080/muse/count";
+        var museAPI = "http://sangheestyle.com:8080/muse/count?callback=?";
         $.getJSON(museAPI)
         .done(function(data) {
           var chart = c3.generate({

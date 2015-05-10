@@ -16,6 +16,15 @@ app.use(bodyParser());
 app.use(express.static(path.join(__dirname, 'html')));
 var html_dir = './html/';
 
+/*
+app.all('*', function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
+      res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+        res.header('Access-Control-Allow-Headers', 'Content-Type');
+          next();
+});
+*/
+
 app.get('/', function (req, res) {
   res.json({message: "Hey! You are very welcome."
   });
@@ -136,7 +145,7 @@ app.get('/muse/count', function (req, res) {
       date = new Date(Date.parse(date)).toISOString().slice(0, 10);
       jsonResult.push({date: date, count: entry.count});
     });
-    res.json({result: jsonResult});
+    res.jsonp({result: jsonResult});
   });
 });
 

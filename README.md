@@ -1,5 +1,5 @@
 # bigdiff-code
-You can find what we need to do in [issue](https://github.com/sangheestyle/bigdiff-code/issues).
+You can find what we need to do in [issue](https://github.com/sangheestyle/bigdiff-code/issues). Also, you can see [a simple example](http://sangheestyle.com:8080/dashboard) of this implementation.
 
 ## Setup
 To setup the environment, run:
@@ -37,15 +37,6 @@ Search packages, crawl their information, and save them.
 ### utils
 Some utils help other modules.
 - [x] `utils.dateRange`: generate date range between start and end date.
-
-## Testing
-We use [mocha](http://mochajs.org/) and [Should.js](http://shouldjs.github.io/) in order to be assured that our implementation of functions properly.
-
-To run the tests for bigdiff-code simply run:
-
-```shell
-$ make test
-```
 
 ## Style guide
 You will want to understand and follow the style guides listed below.

@@ -38,6 +38,23 @@ Search packages, crawl their information, and save them.
 Some utils help other modules.
 - [x] `utils.dateRange`: generate date range between start and end date.
 
+## REST APIs
+### POST api/search/commits
+Search regex for commits with some params. [example](https://gist.github.com/sangheestyle/3d6c3e7cd65e416ac398)
+```shell
+$ curl -H "Content-Type: application/json" -X POST \
+-d '{"regex": ".setTag\\([^,|^\\(]*,[^,]*\\)", "ext":"java", "local_repo_root": "demo_set", "max":100}' \
+http://sangheestyle.com:8080/api/search/commits \
+-o result.json
+```
+Params:
+* `regex`: regular expression
+* `ext`: file extension
+* `local_repo_root`: root directory including cloned repos
+  * `repos`: root including all the cloned repos
+  * `demo_set`: root incuding only some cloned repos
+* `max`: max number of result to get limited result
+
 ## Style guide
 You will want to understand and follow the style guides listed below.
 * [express](https://github.com/strongloop/express)

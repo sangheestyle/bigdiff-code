@@ -72,6 +72,9 @@ app.get('/search/commits', function(req, res) {
   res.send(html);
 });
 
+
+
+
 /*
  *  return commit lists including given regex pattern
  */
@@ -119,6 +122,55 @@ app.post('/search/commits', function (req, res) {
       }
     });
 });
+
+
+app.post('/api/search/commits', function (req, res) {
+  var config = require('./config.json');
+  var root = '/home/sangheestyle_gmail_com/muse_repos/' + req.body.local_repo_root + '/';
+  console.log(root);
+  // For console input, the regex string requires double qoutes
+  var regex = '"' + req.body.regex + '"';
+  var ext = req.body.ext;
+
+  var count = 0;
+  var MAX_RESULT = req.body.max;
+  readdirp({ root: root, depth: 1, entryType: 'directories'})
+    .on('data', function (entry) {
+      // show only limited-number of results
+      if (count > MAX_RESULT) {
+        res.end();
+        return null;
+      }
+
+      if (entry.parentDir !== '') {
+        git.log({ path: entry.fullPath
+                , regex: regex
+                , ext: ext
+                , full_name: entry.path
+          },function (error, results) {
+            if (error) {
+              console.log(error);
+            } else {
+              if (results.results.length !== 0) {
+                console.log("Found in " + results.full_name);
+                console.log(results);
+                res.write("Found in " + results.full_name + '\n');
+                res.write(JSON.stringify(results, null, 2));
+                res.write('\n');
+                count += 1;
+              } else {
+                console.log("Not Found in " + results.full_name);
+              }
+            }
+          });
+      }
+    })
+    .on('end', function () {
+      res.end();
+      return null;
+    });
+});
+
 
 app.get('/muse/count', function (req, res) {
   var group =

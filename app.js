@@ -2,6 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var readdirp = require('readdirp');
 var path = require('path');
+var jade = require('jade');
 
 var git = require('./lib/git');
 var mongo = require('./lib/mongo');
@@ -13,14 +14,16 @@ var app = express();
 var html_dir = './html/';
 app.use(bodyParser());
 app.use(express.static(path.join(__dirname, 'html')));
-
+app.set('views', './views');
+app.set('view engine', 'jade');
 
 /*
  * Index
  */
 app.get('/', function (req, res) {
-  res.json({message: "Hey! You are very welcome."
-  });
+  res.render('index',
+    { title: 'Hey', message: 'You are very welcome.'}
+  );
 });
 
 

@@ -52,24 +52,9 @@ app.get('/dashboard', function(req, res) {
  * get regex and extension and do post with them
  */
 app.get('/search/commits', function(req, res) {
-  var html = '<form action="/search/commits" method="post">' +
-               '<h1>Search patterns on cloned repos</h1>' +
-               'For example: .setTag\\\\([^,|^\\\\(]*,[^,]*\\\\)' +
-               '<br>' +
-               'Use two backslashes instead of one backslash.' +
-               '<br>' +
-               'Also, it takes really long time, please bare with me.' +
-               '<br>' +
-               'regex:' +
-               '<input type="text" name="regex" placeholder=".setTag\\\\([^,|^\\\\(]*,[^,]*\\\\)" />' +
-               '<br>' +
-               '<br>' +
-               'extension:' +
-               '<input type="text" name="ext" placeholder="java" />' +
-               '<br>' +
-               '<button type="submit">Submit</button>' +
-            '</form>';
-  res.send(html);
+  res.render('search_commits',
+    {title: "Search"}
+  );
 });
 
 

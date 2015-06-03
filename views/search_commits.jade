@@ -1,0 +1,10 @@
+html
+  head
+    title!= title
+  body
+    h1 Search patterns on cloned repos
+    p For example: .setTag\\\\([^,|^\\\\(]*,[^,]*\\\\)
+    form(name="search", action="/search/commits", method="post")
+      input(type="text", name="regex", placeholder=".setTag\\\\([^,|^\\\\(]*,[^,]*\\\\))")
+      input(type="ext", name="ext", placeholder="java")
+      input(type="submit", value="search")

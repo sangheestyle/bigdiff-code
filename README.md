@@ -8,7 +8,11 @@ $ git clone https://github.com/sangheestyle/bigdiff-code
 $ cd bigdiff-code
 $ npm install
 ```
-Also, bigdiff-code is installable via [npm](https://www.npmjs.com/package/bigdiff-code).
+Also, you need to copy config template file and modify it.
+```shell
+$ cp config.json.bak config.json
+```
+We strongly recommend you to use [an access token](https://help.github.com/articles/creating-an-access-token-for-command-line-use/) instead of github password.
 
 ## How to use
 You can see some [example](https://github.com/sangheestyle/bigdiff-code/tree/master/examples) to know how to use this module.

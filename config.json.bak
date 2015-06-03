@@ -1,5 +1,5 @@
 { "github_id": "your_github_id"
-, "github_password": "your_github_password"
+, "github_password": "your_github_password_or_personal_access_token"
 , "local_repo_root": "/path/to/local/git/root/"
 , "mongo_url": "mongodb://localhost:27017/db"
 , "mongo_collection": "collection_or_repoIssues"

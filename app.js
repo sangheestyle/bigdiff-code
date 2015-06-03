@@ -76,7 +76,7 @@ app.get('/search/commits', function(req, res) {
 
 
 /*
- *  return commit lists including given regex pattern
+ *  Searching commits for regex and show them in html format
  */
 
 app.post('/search/commits', function (req, res) {
@@ -123,6 +123,14 @@ app.post('/search/commits', function (req, res) {
     });
 });
 
+
+/*
+ * REST API for searching result for regex pattern.
+ * Internal behavior of this function is exactly same with /search/commits.
+ *
+ * TODO: avoid redundancy. Make another function for search commit and use it for
+ * /search/commits and this function.
+ */
 
 app.post('/api/search/commits', function (req, res) {
   var config = require('./config.json');

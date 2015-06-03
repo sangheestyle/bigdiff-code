@@ -7,29 +7,26 @@ var git = require('./lib/git');
 var mongo = require('./lib/mongo');
 var config = require('./config.json');
 
-// Constants
-var PORT = 8080;
 
-// App
+var PORT = 8080;
 var app = express();
+var html_dir = './html/';
 app.use(bodyParser());
 app.use(express.static(path.join(__dirname, 'html')));
-var html_dir = './html/';
+
 
 /*
-app.all('*', function(req, res, next) {
-    res.header('Access-Control-Allow-Origin', '*');
-      res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
-        res.header('Access-Control-Allow-Headers', 'Content-Type');
-          next();
-});
-*/
-
+ * Index
+ */
 app.get('/', function (req, res) {
   res.json({message: "Hey! You are very welcome."
   });
 });
 
+
+/*
+ * Authors
+ */
 app.get('/who_am_i', function (req, res) {
   res.json({name: "Sanghee Kim"
 	  ,collaborator: ["Brennan", "Mazin Hakeem"]
@@ -39,18 +36,18 @@ app.get('/who_am_i', function (req, res) {
   });
 });
 
+
 /*
  * show dashboard to represent current status of MUSE
  */
-
 app.get('/dashboard', function(req, res) {
   res.sendfile(html_dir + 'dashboard.html');
 });
 
+
 /*
  * get regex and extension and do post with them
  */
-
 app.get('/search/commits', function(req, res) {
   var html = '<form action="/search/commits" method="post">' +
                '<h1>Search patterns on cloned repos</h1>' +
@@ -73,12 +70,9 @@ app.get('/search/commits', function(req, res) {
 });
 
 
-
-
 /*
  *  Searching commits for regex and show them in html format
  */
-
 app.post('/search/commits', function (req, res) {
   var config = require('./config.json');
   var root = config.local_repo_root;
@@ -131,7 +125,6 @@ app.post('/search/commits', function (req, res) {
  * TODO: avoid redundancy. Make another function for search commit and use it for
  * /search/commits and this function.
  */
-
 app.post('/api/search/commits', function (req, res) {
   var config = require('./config.json');
   var root = '/home/sangheestyle_gmail_com/muse_repos/' + req.body.local_repo_root + '/';
@@ -180,6 +173,9 @@ app.post('/api/search/commits', function (req, res) {
 });
 
 
+/*
+ * REST API: return number of repo by date
+ */
 app.get('/muse/count', function (req, res) {
   var group =
     [
@@ -209,5 +205,9 @@ app.get('/muse/count', function (req, res) {
   });
 });
 
+
+/*
+ * main
+ */
 app.listen(PORT);
 console.log('Running on http://localhost:' + PORT);

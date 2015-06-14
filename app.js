@@ -102,6 +102,9 @@ app.post('/search/commits', function (req, res) {
             }
           });
       }
+    })
+    .on('end', function () {
+      res.end();
     });
 });
 

@@ -1,4 +1,54 @@
 # Documentation for bigdiff-code
+## Quick Setup
+If you want to run `bigdiff-code` on ubuntu 14.04 LTS, you can do it within 15 minutes with the following steps. I have tested it on a Google Compute Engine instance which has n1-standard-2 (2 vCPUs, 7.5 GB memory) with 200GB HDD.
+
+* [Install mongodb](http://docs.mongodb.org/manual/tutorial/install-mongodb-on-ubuntu/).
+```
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10
+echo "deb http://repo.mongodb.org/apt/ubuntu "$(lsb_release -sc)"/mongodb-org/3.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.0.list
+sudo apt-get update
+sudo apt-get install -y mongodb-org
+sudo service mongod start
+```
+* Install build tools for [BSON extensions of mongoDB](http://stackoverflow.com/questions/21656420/failed-to-load-c-bson-extension).
+```
+sudo apt-get install gcc make build-essential`
+```
+* Install [NVM](https://github.com/creationix/nvm) to use node and npm.
+```
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.25.4/install.sh | bash
+exec $SHELL
+nvm install stable
+nvm use stable
+```
+* Install git
+```
+sudo apt-get install git
+```
+* Clone bigdiff-code
+```
+git clone https://github.com/sangheestyle/bigdiff-code
+```
+* Config mongodb for bigdiff-code
+```
+cd bigdiff-code
+mongo test config/mongo/init.js
+```
+* Install npm packages for bigdiff-code
+```
+cd bigdiff-code
+npm install
+```
+* Modify config
+  * Check [Modify configuration of bigdiff-code](https://github.com/sangheestyle/bigdiff-code/tree/master/doc#modify-configuration-of-bigdiff-code).
+* Run app
+```
+cd bigdiff-code
+npm install -g forever
+forever start app.js
+```
+
+Done! The app will run forever even you close your session. By default setting, it will search repos on github and clone repos at 00:00:01am on everyday. You might need to read chunk of code in `bigdiff-code/app.js` for understanding this `cron` job.
 
 ## Setup
 
@@ -31,7 +81,7 @@ $ mongo test config/mongo/init.js
 Now, your mongoDB instance has `muse` for DB and `repo` for collection under `muse`.
 
 ### Modify configuration of bigdiff-code
-Also, you need to copy config template file and modify copied one.
+You need to copy config template file and modify copied one.
 
 ```shell
 $ cp config.json.bak config.json
@@ -50,7 +100,9 @@ For example, I modified like the following:
 }
 ```
 
-I used personal access tokens (faked one) instead of github_password. This is because I strongly recommend you to use [an access token](https://help.github.com/articles/creating-an-access-token-for-command-line-use/) instead of github password.
+Especially, you have to create an empty folder which all the cloned repositories will be under, and you need to register path of this folder in `local_repo_root`. It will be created automatically if there has no such `local_repo_root` folder, but you can avoid some potential problems with creating a folder on your own.
+
+Also, I used personal access tokens (faked one) instead of github_password. This is because I strongly recommend you to use [an access token](https://help.github.com/articles/creating-an-access-token-for-command-line-use/) instead of github password.
 
 ## Run some examples
 There are some examples for basic functions. After reviewing them, you can integrate them into your web applications.

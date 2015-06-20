@@ -2,6 +2,7 @@
 ## Quick Setup
 If you want to run `bigdiff-code` on ubuntu 14.04 LTS, you can do it within 15 minutes with the following steps. I have tested it on a Google Compute Engine instance which has n1-standard-2 (2 vCPUs, 7.5 GB memory) with 200GB HDD.
 
+### Steps
 * [Install mongodb](http://docs.mongodb.org/manual/tutorial/install-mongodb-on-ubuntu/).
 ```
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10
@@ -48,7 +49,16 @@ npm install -g forever
 forever start app.js
 ```
 
-Done! The app will run forever even you close your session. By default setting, it will search repos on github and clone repos at 00:00:01am on everyday. You might need to read chunk of code in `bigdiff-code/app.js` for understanding this `cron` job.
+Done! The app will run forever even you close your session. 
+
+### Services
+
+* Do cron jobs: See [related code](https://github.com/sangheestyle/bigdiff-code/blob/master/app.js) and find `jobSearchRepos` and `jobCloneRepos` to understand how they do cron.
+  * Search repos on github at 00:00:01am on everyday.
+  * Clone repos at 00:00:01am on everyday.
+* Do web service at http://localhost:8080
+  * Search patterns: http://localhost:8080/search/commits
+  * Show trend: http://localhost:8080/dashboard
 
 ## Setup
 

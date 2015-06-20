@@ -91,14 +91,21 @@ app.post('/search/commits', function (req, res) {
   // For console input, the regex string requires double qoutes
   var regex = '"' + req.body.regex.replace(/\\/g, "\\\\") + '"';
   var ext = req.body.ext;
-  console.log('REGEX: ' + regex);
+  console.log('REGEX_ORG: ' + req.body.regex);
+  console.log('REGEX_POS: ' + regex);
   //TODO: I need to put res.close() somewhere but I don't know
   var count = 0;
   var MAX_RESULT = 5;
+  //res.writeHead('content-type', 'text/html');
+  res.write('<html><head>');
+  res.write('<body>');
+  res.write('<h1>Result</h1>');
+  res.write('<p>Given regex: ' + req.body.regex + '</p>');
   readdirp({ root: root, depth: 1, entryType: 'directories'})
     .on('data', function (entry) {
       // show only limited-number of results
       if (count > MAX_RESULT) {
+        res.write('</body></html>');
         res.end();
         return null;
       }
@@ -115,19 +122,36 @@ app.post('/search/commits', function (req, res) {
               if (results.results.length !== 0) {
                 console.log("Found in " + results.full_name);
                 console.log(results);
-                res.write("Found in " + results.full_name + '\n');
-                res.write(JSON.stringify(results, null, 2));
-                res.write('\n');
+                res.write('<h2>' + results.full_name + '</h2>');
+                res.write('<ul>');
+                for (i = 0; i < results.results.length; i++) {
+                  var commit_url = 'https://github.com/'
+                                 + results.full_name
+                                 + '/commit/'
+                                 + results.results[i].id;
+                  var commitLink = '<li>'
+                                 + results.results[i].id.slice(0, 6)
+                                 + ': '
+                                 + '<a href="'
+                                 + commit_url
+                                 + '">'
+                                 + results.results[i].subject
+                                 + '</a>'
+                                 + '</li>';
+                  res.write(commitLink);
+                }
+                res.write('</ul>');
                 count += 1;
               } else {
                 console.log("Not Found in " + results.full_name);
-                res.write("Not Found in " + results.full_name + '\n');
+                //res.write("Not Found in " + results.full_name + '\n');
               }
             }
           });
       }
     })
     .on('end', function () {
+      res.write('</body></html>');
       res.end();
     });
 });

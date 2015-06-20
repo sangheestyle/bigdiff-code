@@ -1,3 +1,18 @@
+// Include the cluster module
+var cluster = require('cluster');
+
+if (cluster.isMaster) {
+  var cpuCount = require('os').cpus().length;
+
+  for (var i = 0; i < cpuCount; i += 1) {
+    cluster.fork();
+  }
+} else {
+/*
+ * Code to run under cluster.
+ * Ignore identation intentionally so please keep in mind it.
+ */
+
 var express = require('express');
 var bodyParser = require('body-parser');
 var readdirp = require('readdirp');
@@ -109,7 +124,6 @@ app.post('/search/commits', function (req, res) {
     });
 });
 
-
 /*
  * REST API for searching result for regex pattern.
  * Internal behavior of this function is exactly same with /search/commits.
@@ -203,3 +217,5 @@ app.get('/muse/count', function (req, res) {
  */
 app.listen(PORT);
 console.log('Running on http://localhost:' + PORT);
+
+}//End of else for cluster

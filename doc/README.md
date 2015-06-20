@@ -42,18 +42,19 @@ npm install
 ```
 * Modify config
   * Check [Modify configuration of bigdiff-code](https://github.com/sangheestyle/bigdiff-code/tree/master/doc#modify-configuration-of-bigdiff-code).
-* Run app
+* Run web service and cron jobs
 ```
 cd bigdiff-code
 npm install -g forever
 forever start app.js
+forever start cron.js
 ```
 
-Done! The app will run forever even you close your session. 
+Done! The app will run forever even you close your session. If you want to stop all the node programs run by `forever`, you just need to do `forever stopall`.
 
 ### Services
 
-* Do cron jobs: See [related code](https://github.com/sangheestyle/bigdiff-code/blob/master/app.js) and find `jobSearchRepos` and `jobCloneRepos` to understand how they do cron.
+* Do cron jobs: See [related code](https://github.com/sangheestyle/bigdiff-code/blob/master/cron.js) and find `jobSearchRepos` and `jobCloneRepos` to understand how they do cron.
   * Search repos on github at 00:00:01am on everyday.
   * Clone repos at 00:00:01am on everyday.
 * Do web service at http://localhost:8080

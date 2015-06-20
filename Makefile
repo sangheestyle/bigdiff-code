@@ -1,4 +1,7 @@
-test:
-	./node_modules/.bin/mocha --reporter spec
+start:
+	forever stopall
+	forever start app.js
+	forever start cron.js
 
-.PHONY: test
+stop:
+	forever stopall

@@ -50,7 +50,7 @@ forever start app.js
 forever start cron.js
 ```
 
-Done! The app will run forever even you close your session. If you want to stop all the node programs run by `forever`, you just need to do `forever stopall`.
+Done! The app will run forever, even you close your session. If you want to stop all the node programs run by `forever`, you just need to do `forever stopall`.
 
 ### Services
 
@@ -60,6 +60,9 @@ Done! The app will run forever even you close your session. If you want to stop 
 * Do web service at http://localhost:8080
   * Search patterns: http://localhost:8080/search/commits
   * Show trend: http://localhost:8080/dashboard
+
+### etc.
+* Crawling 241177 items from 2011-01-01 to 2015-03-30 (1551 days) took at most 4 hours.
 
 ## Setup
 

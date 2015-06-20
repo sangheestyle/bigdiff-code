@@ -89,9 +89,9 @@ app.post('/search/commits', function (req, res) {
   var config = require('./config.json');
   var root = config.local_repo_root;
   // For console input, the regex string requires double qoutes
-  var regex = '"' + req.body.regex + '"';
+  var regex = '"' + req.body.regex.replace(/\\/g, "\\\\") + '"';
   var ext = req.body.ext;
-
+  console.log('REGEX: ' + regex);
   //TODO: I need to put res.close() somewhere but I don't know
   var count = 0;
   var MAX_RESULT = 5;

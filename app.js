@@ -3,8 +3,10 @@ var bodyParser = require('body-parser');
 var readdirp = require('readdirp');
 var path = require('path');
 var jade = require('jade');
+var CronJob = require('cron').CronJob;
 
 var git = require('./lib/git');
+var github = require('./lib/github');
 var mongo = require('./lib/mongo');
 var config = require('./config.json');
 
@@ -202,3 +204,36 @@ app.get('/muse/count', function (req, res) {
  */
 app.listen(PORT);
 console.log('Running on http://localhost:' + PORT);
+
+/*
+ * JOB: search repos for github
+ * Runs everyday (Sunday through Saturday)
+ * at 00:00:01 AM.
+ */
+
+var jobSearchRepos = new CronJob({
+  cronTime: '01 00 00 * * 0-6',
+  onTick: function() {
+    var id = config.github_id;
+    var password = config.github_password;
+    var params = { query: 'android in:name,description,readme'
+                 , start: '2011-01-01'
+                 , end: new Date().toJSON().slice(0,10)
+                 , per_page: 100
+                 , client: github.authClient(id, password)
+                 , config: config
+                 };
+
+    github.searchRepos(params, function(err) {
+      if (err) {
+        console.log('FAILED: Search Repos.');
+        console.log(err);
+      } else {
+        console.log('DONE: Search Repos.');
+      }
+    });
+  },
+  start: false,
+  timeZone: 'America/Denver'
+});
+jobSearchRepos.start();

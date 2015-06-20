@@ -44,13 +44,15 @@ npm install
   * Check [Modify configuration of bigdiff-code](https://github.com/sangheestyle/bigdiff-code/tree/master/doc#modify-configuration-of-bigdiff-code).
 * Run web service and cron jobs
 ```
-cd bigdiff-code
 npm install -g forever
-forever start app.js
-forever start cron.js
+cd bigdiff-code
+make start
 ```
 
-Done! The app will run forever, even you close your session. If you want to stop all the node programs run by `forever`, you just need to do `forever stopall`.
+Done! The app will run forever, even you close your session. If you want to stop all the node programs, you just need to do the following:
+```
+make stop
+```
 
 ### Services
 

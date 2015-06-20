@@ -8,7 +8,8 @@
     <h1>Crawling Trend</h1>
     <h2><font color="green" id="crawledReposNum"></font> items from
       <font color="orange" id="crawledReposFrom"></font> to
-      <font color="orange" id="crawledReposTo"></font>
+      <font color="orange" id="crawledReposTo"></font> (
+      <font color="blue" id="crawledReposNumDays"></font> days)
     </h2>
 
     <h2>Number of created repos per day</h2>
@@ -37,7 +38,13 @@
           data.result.sort(function(a, b){
             return new Date(a.date) - new Date(b.date);
           });
+          var numItems = 0;
+          for (i = 0; i < data.result.length; i++) {
+            numItems += data.result[i].count;
+          }
           document.getElementById("crawledReposNum").innerHTML =
+            numItems;
+          document.getElementById("crawledReposNumDays").innerHTML =
             data.result.length;
           document.getElementById("crawledReposFrom").innerHTML =
             data.result[0].date;

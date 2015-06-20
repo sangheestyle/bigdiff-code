@@ -5,7 +5,7 @@ html
     h1 Search patterns on cloned repos
     p For example: .setTag\([^,|^\(]*,[^,]*\)
     form(name="search", action="/search/commits", method="post")
-      input(type="text", name="regex", placeholder=".setTag\([^,|^\(]*,[^,]*\))")
-      input(type="ext", name="ext", placeholder="java")
+      input(type="text", name="regex", placeholder="regex")
+      input(type="text", name="ext", placeholder="ext")
       input(type="submit", value="search")
     a(href='http://regexr.com/') Practice Regex.

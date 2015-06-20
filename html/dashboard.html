@@ -14,11 +14,14 @@
     <h2>Number of created repos per day</h2>
     <div id="chart"></div>
 
+    <!-- TODO: Need to draw some more trend graph -->
+    <!--
     <h2>Relationship between watchers and forks</h2>
     <div id="chart_rel_watchers_forks"></div>
 
     <h2>Relationship between watchers and size</h2>
     <div id="chart_rel_watchers_size"></div>
+    -->
 
     <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.10/c3.min.js" charset="utf-8"></script>
@@ -28,7 +31,7 @@
     </script>
     <script>
       (function() {
-        var museAPI = "http://sangheestyle.com:8080/muse/count?callback=?";
+        var museAPI = "http://localhost:8080/muse/count?callback=?";
         $.getJSON(museAPI)
         .done(function(data) {
           var chart = c3.generate({

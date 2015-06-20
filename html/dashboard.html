@@ -6,9 +6,9 @@
   <body>
     <div id="content">
     <h1>Crawling Trend</h1>
-    <h2><font color="green">164,220</font> items from
-      <font color="orange">1 Jan 2011</font> to
-      <font color="orange">30 Apr 2015</font>
+    <h2><font color="green" id="crawledReposNum"></font> items from
+      <font color="orange" id="crawledReposFrom"></font> to
+      <font color="orange" id="crawledReposTo"></font>
     </h2>
 
     <h2>Number of created repos per day</h2>
@@ -31,9 +31,18 @@
     </script>
     <script>
       (function() {
-        var museAPI = "http://localhost:8080/muse/count?callback=?";
+        var museAPI = "http://sangheestyle.com:8080/muse/count?callback=?";
         $.getJSON(museAPI)
         .done(function(data) {
+          data.result.sort(function(a, b){
+            return new Date(a.date) - new Date(b.date);
+          });
+          document.getElementById("crawledReposNum").innerHTML =
+            data.result.length;
+          document.getElementById("crawledReposFrom").innerHTML =
+            data.result[0].date;
+          document.getElementById("crawledReposTo").innerHTML =
+            data.result[data.result.length-1].date;
           var chart = c3.generate({
             bindto: '#chart',
             data: {

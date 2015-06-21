@@ -33,7 +33,7 @@
     "cron": "^1.0.9",
     "express": "^4.11.2",
     "jade": "^1.10.0",
-    "moment": "^2.9.0",
+    "moment": "^2.10.3",
     "moment-range": "^1.0.6",
     "mongodb": "^1.4.33",
     "octonode": "^0.6.14",

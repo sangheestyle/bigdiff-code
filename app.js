@@ -26,6 +26,7 @@ var bodyParser = require('body-parser');
 var readdirp = require('readdirp');
 var path = require('path');
 var jade = require('jade');
+var moment = require('moment');
 
 var git = require('./lib/git');
 var github = require('./lib/github');
@@ -91,20 +92,30 @@ app.post('/search/commits', function (req, res) {
   // For console input, the regex string requires double qoutes
   var regex = '"' + req.body.regex.replace(/\\/g, "\\\\") + '"';
   var ext = req.body.ext;
+  var max = parseInt(req.body.max);
   console.log('REGEX_ORG: ' + req.body.regex);
   console.log('REGEX_POS: ' + regex);
-  //TODO: I need to put res.close() somewhere but I don't know
-  var count = 0;
+
   var MAX_RESULT = 5;
-  //res.writeHead('content-type', 'text/html');
+  if (req.body.max == 0) {
+    MAX_RESULT = Number.POSITIVE_INFINITY;
+  } else {
+    MAX_RESULT = req.body.max;
+  }
+
+  var count = 0;
   res.write('<html><head>');
   res.write('<body>');
   res.write('<h1>Result</h1>');
-  res.write('<p>Given regex: ' + req.body.regex + '</p>');
+  res.write('<ul>');
+  res.write('<li>Given regex: ' + req.body.regex + '</li>');
+  res.write('<li>Max result: ' + MAX_RESULT + '</li>');
+  res.write('</ul>');
+
   readdirp({ root: root, depth: 1, entryType: 'directories'})
     .on('data', function (entry) {
       // show only limited-number of results
-      if (count > MAX_RESULT) {
+      if (count >= MAX_RESULT) {
         res.write('</body></html>');
         res.end();
         return null;
@@ -129,8 +140,10 @@ app.post('/search/commits', function (req, res) {
                                  + results.full_name
                                  + '/commit/'
                                  + results.results[i].id;
+                  // %aI: author date, strict ISO 8601 format
+                  var aI = moment(results.results[i].date).format('L');
                   var commitLink = '<li>'
-                                 + results.results[i].id.slice(0, 6)
+                                 + aI
                                  + ': '
                                  + '<a href="'
                                  + commit_url

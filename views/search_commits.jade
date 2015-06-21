@@ -3,9 +3,14 @@ html
     title!= title
   body
     h1 Search patterns on cloned repos
-    p e.g., regex: .setTag\([^,|^\(]*,[^,]*\) ext: java
+    p Example:
+    ul
+      li regex: .setTag\([^,|^\(]*,[^,]*\)
+      li ext: java
+      li max: 10
     form(name="search", action="/search/commits", method="post")
       input(type="text", name="regex", placeholder="regex")
       input(type="text", name="ext", placeholder="ext")
+      input(type="text", name="max", placeholder="max")
       input(type="submit", value="search")
     a(href='http://regexr.com/') Practice Regex.

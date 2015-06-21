@@ -112,6 +112,7 @@ app.post('/search/commits', function (req, res) {
   res.write('<h1>Result</h1>');
   res.write('<ul>');
   res.write('<li>Given regex: ' + req.body.regex + '</li>');
+  res.write('<li>File extension: ' + ext + '</li>');
   res.write('<li>Max result: ' + MAX_RESULT + '</li>');
   res.write('</ul>');
 

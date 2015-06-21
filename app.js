@@ -119,9 +119,7 @@ app.post('/search/commits', function (req, res) {
     .on('data', function (entry) {
       // show only limited-number of results
       if (count >= MAX_RESULT) {
-        res.write('</body></html>');
-        res.end();
-        return null;
+        return;
       }
 
       if (entry.parentDir !== '') {

@@ -93,11 +93,8 @@ app.post('/search/commits', function (req, res) {
   var regex = '"' + req.body.regex.replace(/\\/g, "\\\\") + '"';
   var ext = req.body.ext;
   var max = parseInt(req.body.max);
-  console.log('REGEX_ORG: ' + req.body.regex);
-  console.log('REGEX_POS: ' + regex);
-  console.log(max);
-  console.log(typeof(max));
   var MAX_RESULT = 5;
+
   if (isNaN(max)) {
     MAX_RESULT = 5;
   } else if (req.body.max == 0) {
@@ -106,7 +103,6 @@ app.post('/search/commits', function (req, res) {
     MAX_RESULT = req.body.max;
   }
 
-  var count = 0;
   res.write('<html><head>');
   res.write('<body>');
   res.write('<h1>Result</h1>');
@@ -116,6 +112,7 @@ app.post('/search/commits', function (req, res) {
   res.write('<li>Max result: ' + MAX_RESULT + '</li>');
   res.write('</ul>');
 
+  var count = 0;
   readdirp({ root: root, depth: 1, entryType: 'directories'})
     .on('data', function (entry) {
       // show only limited-number of results
@@ -159,7 +156,6 @@ app.post('/search/commits', function (req, res) {
                 count += 1;
               } else {
                 console.log("Not Found in " + results.full_name);
-                //res.write("Not Found in " + results.full_name + '\n');
               }
             }
           });

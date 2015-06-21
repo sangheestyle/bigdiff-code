@@ -95,9 +95,12 @@ app.post('/search/commits', function (req, res) {
   var max = parseInt(req.body.max);
   console.log('REGEX_ORG: ' + req.body.regex);
   console.log('REGEX_POS: ' + regex);
-
+  console.log(max);
+  console.log(typeof(max));
   var MAX_RESULT = 5;
-  if (req.body.max == 0) {
+  if (isNaN(max)) {
+    MAX_RESULT = 5;
+  } else if (req.body.max == 0) {
     MAX_RESULT = Number.POSITIVE_INFINITY;
   } else {
     MAX_RESULT = req.body.max;

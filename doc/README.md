@@ -67,7 +67,8 @@ make stop
   * Show trend: http://localhost:8080/dashboard
 
 ### etc.
-* Crawling 241177 items from 2011-01-01 to 2015-03-30 (1551 days) took at most 4 hours.
+* Crawling 282350 items from 2011-01-01 to 2015-06-20 (1632 days) took at most 4 hours.
+* Cloning filtered items from 2011-01-01 to 2015-06-20 (1632 days) took at most 3 hours.
 
 ## Setup
 

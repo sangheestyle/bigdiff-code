@@ -147,7 +147,7 @@ app.post('/search/commits', function (req, res) {
                                  + ': '
                                  + '<a href="'
                                  + commit_url
-                                 + '">'
+                                 + '" target="_blank">'
                                  + results.results[i].subject
                                  + '</a>'
                                  + '</li>';

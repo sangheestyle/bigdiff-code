@@ -3,7 +3,7 @@ html
     title!= title
   body
     h1 Search patterns on cloned repos
-    p For example: .setTag\([^,|^\(]*,[^,]*\)
+    p e.g., regex: .setTag\([^,|^\(]*,[^,]*\) ext: java
     form(name="search", action="/search/commits", method="post")
       input(type="text", name="regex", placeholder="regex")
       input(type="text", name="ext", placeholder="ext")

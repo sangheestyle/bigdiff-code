@@ -22,9 +22,12 @@ exec $SHELL
 nvm install stable
 nvm use stable
 ```
-* Install git
+* Install git: You have to install recent version of git for supporting strict ISO 8601 format. (Recommend 2.4.x)
 ```
+sudo add-apt-repository ppa:git-core/ppa -y
+sudo apt-get update
 sudo apt-get install git
+git version
 ```
 * Clone bigdiff-code
 ```

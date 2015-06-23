@@ -13,7 +13,7 @@ sudo service mongod start
 ```
 * Install build tools for [BSON extensions of mongoDB](http://stackoverflow.com/questions/21656420/failed-to-load-c-bson-extension).
 ```
-sudo apt-get install gcc make build-essential`
+sudo apt-get install gcc make build-essential
 ```
 * Install [NVM](https://github.com/creationix/nvm) to use node and npm.
 ```

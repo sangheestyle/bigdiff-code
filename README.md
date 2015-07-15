@@ -1,5 +1,5 @@
 # bigdiff-code
-You can find what we need to do in [issue](https://github.com/sangheestyle/bigdiff-code/issues). Also, you can see [a simple example](http://sangheestyle.com:8080/dashboard) of this implementation.
+You can find what we need to do in [issue](https://github.com/sangheestyle/bigdiff-code/issues).
 
 ## Setup
 To setup the environment, run:
